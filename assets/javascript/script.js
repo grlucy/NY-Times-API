@@ -15,7 +15,7 @@ $(document).ready(function() {
     var numberRecordsVal = numberRecordsEl.val();
     var startYear = startYearEl.val();
     var endYear = endYearEl.val();
-    // Interface with API
+    // Access API
     // queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=canada&api-key=PVhkpNf6oRHLZzBRz8qh2olTphYL39Rx";
     queryURL =
       "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
@@ -30,23 +30,28 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).then(function(result) {
-      console.log(result);
-      //log title
-      console.log(result.response.docs[7].headline.main);
-      //log author
-      console.log(result.response.docs[7].byline.original);
-      //log section
-      console.log(result.response.docs[7].section_name);
-      //log publication date
-      console.log(result.response.docs[7].pub_date);
-      //log URL
-      console.log(result.response.docs[7].web_url);
       for (var i = 0; i < numberRecordsVal; i++) {
         // Create a new div within articlesGoHereEl to house each article returned from API
         var newDiv = $("<div>");
-        // Adding title to div
+        // Add title, author, section, publication date, and URL to div
         newDiv.append(
-          $("<h1>" + result.response.docs[i].headline.main + "</h1>")
+          $("<h4>" + result.response.docs[i].headline.main + "</h4>")
+        );
+        newDiv.append(
+          $("<h6>" + result.response.docs[i].byline.original + "</h6>")
+        );
+        newDiv.append($("<p>" + result.response.docs[i].section_name) + "</p>");
+        newDiv.append(
+          $("<p><strong>" + result.response.docs[i].pub_date + "</strong></p>")
+        );
+        newDiv.append(
+          $(
+            '<a href="' +
+              result.response.docs[i].web_url +
+              '" target="_blank">' +
+              result.response.docs[i].web_url +
+              "</a>"
+          )
         );
         articlesGoHereEl.append(newDiv);
       }
