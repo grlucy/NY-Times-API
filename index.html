@@ -43,18 +43,26 @@
           <div class="col">
             <form id="search-form">
               <p>Search Term:</p>
-              <input type="text" name="search-term" /><br /><br />
+              <input
+                type="text"
+                name="search-term"
+                id="search-term"
+              /><br /><br />
               <p>Number of Records to Retrieve:</p>
-              <select>
+              <select id="number-records">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option> </select
               ><br /><br />
               <p>Start Year (Optional):</p>
-              <input type="text" name="start-year" /><br /><br />
+              <input
+                type="text"
+                name="start-year"
+                id="start-year"
+              /><br /><br />
               <p>End Year (Optional):</p>
-              <input type="text" name="end-year" /><br /><br />
+              <input type="text" name="end-year" id="end-year" /><br /><br />
               <button id="searchBtn">Search</button
               ><button id="clearBtn">Clear</button>
             </form>
